@@ -15,6 +15,10 @@ app.use(
 );
 app.use(express.json());
 
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const startServer = async () => {
   try {
@@ -35,6 +39,7 @@ const startServer = async () => {
 app.get("/", (req, res) => {
   res.send("Task Manager API");
 });
+
 app.use("/auth", require("./routes/auth"));
 app.use("/tasks", require("./routes/tasks"));
 
