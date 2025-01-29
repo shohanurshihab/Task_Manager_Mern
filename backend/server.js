@@ -8,7 +8,7 @@ const app = express();
 // const cors = require("cors");
 app.use(
   cors({
-    origin: "https://task-manager-mern-r7ug.vercel.app", // Allow frontend origin
+    origin: "*", // Allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow only GET, POST, PUT, DELETE
     credentials: true, // If using cookies/auth headers
   })
