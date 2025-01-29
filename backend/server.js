@@ -32,7 +32,9 @@ const startServer = async () => {
   }
 };
 
-
+app.get("/", (req, res) => {
+  res.send("Task Manager API");
+});
 app.use("/auth", require("./routes/auth"));
 app.use("/tasks", require("./routes/tasks"));
 
