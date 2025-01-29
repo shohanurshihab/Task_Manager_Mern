@@ -4,15 +4,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 // const cors = require("cors");
-app.use(
-  cors({
-    origin: ["https://task-manager-mern-r7ug.vercel.app"], // Allow frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow only GET, POST, PUT, DELETE
-    credentials: true, // If using cookies/auth headers
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://task-manager-mern-r7ug.vercel.app"], // Allow frontend origin
+//     methods: ["GET", "POST", "PUT", "DELETE"], // Allow only GET, POST, PUT, DELETE
+//     credentials: true, // If using cookies/auth headers
+//   })
+// );
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, {
