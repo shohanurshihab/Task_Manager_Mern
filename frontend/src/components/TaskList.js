@@ -54,49 +54,49 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   return (
     <ul className="list-none p-0">
       {tasks.map((task) => (
-        <li key={task._id} className="flex flex-col p-3 border border-gray-300 rounded-lg mb-2 bg-white">
+        <li key={task._id} className="flex flex-col p-4 border border-gray-300 rounded-lg mb-3 bg-white shadow-md">
           {editingTaskId === task._id ? (
             <>
               <input
                 type="text"
                 value={newTaskName}
                 onChange={(e) => setNewTaskName(e.target.value)}
-                onBlur={() => saveTask(task)}
-                onKeyDown={(e) => e.key === "Enter" && saveTask(task)}
                 className="p-2 border border-gray-300 rounded-lg mb-2"
               />
               <textarea
                 value={newTaskDescription}
                 onChange={(e) => setNewTaskDescription(e.target.value)}
-                onBlur={() => saveTask(task)}
-                onKeyDown={(e) => e.key === "Enter" && saveTask(task)}
                 className="p-2 border border-gray-300 rounded-lg mb-2"
               />
               <input
                 type="date"
                 value={newTaskDueDate}
                 onChange={(e) => setNewTaskDueDate(e.target.value)}
-                onBlur={() => saveTask(task)}
-                onKeyDown={(e) => e.key === "Enter" && saveTask(task)}
                 className="p-2 border border-gray-300 rounded-lg mb-2"
               />
+              <div className="flex justify-end gap-2 mt-2">
+                <button onClick={() => saveTask(task)} className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">Save</button>
+                <button onClick={() => setEditingTaskId(null)} className="p-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-200">Cancel</button>
+              </div>
             </>
           ) : (
             <>
-              <span
-                onClick={() => toggleTask(task)}
-                className={`cursor-pointer ${task.completed ? "line-through" : ""} text-gray-800`}
-              >
-                {task.title}
-              </span>
-              <p className="text-gray-600">{task.description}</p>
-              <p className="text-gray-600">{formatDate(task.dueDate)}</p>
+              <div className="flex justify-between items-center">
+                <span
+                  onClick={() => toggleTask(task)}
+                  className={`cursor-pointer ${task.completed ? "line-through" : ""} text-gray-800 text-lg font-semibold`}
+                >
+                  {task.title}
+                </span>
+                <div className="flex gap-2">
+                  <button onClick={() => startEditing(task)} className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">Edit</button>
+                  <button onClick={() => removeTask(task._id)} className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200">Delete</button>
+                </div>
+              </div>
+              <p className="text-gray-600 mt-2">{task.description}</p>
+              <p className="text-gray-600 mt-1">{formatDate(task.dueDate)}</p>
             </>
           )}
-          <div className="flex gap-2 mt-2">
-            <button onClick={() => startEditing(task)} className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">Edit</button>
-            <button onClick={() => removeTask(task._id)} className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200">Delete</button>
-          </div>
         </li>
       ))}
     </ul>

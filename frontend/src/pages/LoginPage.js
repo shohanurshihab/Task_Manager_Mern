@@ -8,7 +8,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="p-4">
+    <div>
       <Login onLogin={handleLogin} />
     </div>
   );
